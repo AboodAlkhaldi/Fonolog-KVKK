@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veri Güvenliği & Hesap Silme — Fonolog</title>
+  <meta name="description" content="Fonolog veri güvenliği, hesap silme ve veri silme talebi sayfası. Google Play Data Safety gereksinimlerine uygun resmi açıklama." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .delete-steps {
+      counter-reset: step;
+      margin: 1.2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+    .step {
+      counter-increment: step;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+    }
+    .step::before {
+      content: counter(step);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      background: var(--amber);
+      color: #1a1206;
+      font-family: var(--serif);
+      font-weight: 800;
+      font-size: .85rem;
+      border-radius: 50%;
+    }
+    .step p { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+    .step strong { color: var(--text); }
+
+    .safety-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .safety-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+    }
+    .safety-card .s-icon { font-size: 1.5rem; margin-bottom: .6rem; }
+    .safety-card h4 {
+      font-family: var(--serif);
+      font-size: .95rem;
+      color: var(--text);
+      margin-bottom: .3rem;
+    }
+    .safety-card p { font-size: .82rem; color: var(--muted); line-height: 1.55; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="app-logo.png" alt="Fonolog logo" class="logo-mark" />
+      <span>Fonolog</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="privacy.html">Gizlilik</a>
+      <a href="terms.html">Koşullar</a>
+      <a href="mailto:fonologpro@gmail.com" class="nav-cta">İletişim</a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-tag">Google Play Uyumlu</div>
+    <h1>Veri Güvenliği<br>&amp; Hesap Silme</h1>
+    <p class="subtitle">Verileriniz nasıl korunuyor, nasıl silinebilir — Google Play Data Safety bölümüne uygun resmi açıklama.</p>
+    <div class="update-badge">📅 Son güncelleme: 25 Mayıs 2026</div>
+  </div>
+
+  <div class="legal-content">
+
+    <div class="legal-toc">
+      <h4>İçindekiler</h4>
+      <ol>
+        <li><a href="#ds1">Veri Toplama Özeti</a></li>
+        <li><a href="#ds2">Veri Paylaşımı</a></li>
+        <li><a href="#ds3">Güvenlik Uygulamaları</a></li>
+        <li><a href="#ds4">Hesap Silme</a></li>
+        <li><a href="#ds5">Veri Silme Talebi</a></li>
+        <li><a href="#ds6">Çocuk Güvenliği</a></li>
+      </ol>
+    </div>
+
+    <!-- DS1 -->
+    <div class="legal-section-block" id="ds1">
+      <div class="section-number">Bölüm 01</div>
+      <h2>Veri Toplama Özeti</h2>
+      <p>Aşağıdaki tablo, Google Play Data Safety bölümü için toplanan veri kategorilerini özetlemektedir:</p>
+
+      <table class="data-table" style="margin-top:1rem">
+        <thead>
+          <tr>
+            <th>Veri Türü</th>
+            <th>Toplanıyor mu?</th>
+            <th>Şifreli mi?</th>
+            <th>Silinebilir mi?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ad / E-posta</td>
+            <td><span class="badge badge-yes">Evet</span></td>
+            <td><span class="badge badge-yes">Evet (TLS)</span></td>
+            <td><span class="badge badge-yes">Evet</span></td>
+          </tr>
+          <tr>
+            <td>Şifre</td>
+            <td><span class="badge badge-yes">Evet</span></td>
+            <td><span class="badge badge-yes">bcrypt hash</span></td>
+            <td><span class="badge badge-yes">Evet</span></td>
+          </tr>
+          <tr>
+            <td>Öğrenme ilerlemesi</td>
+            <td><span class="badge badge-yes">Evet</span></td>
+            <td><span class="badge badge-yes">Evet (TLS)</span></td>
+            <td><span class="badge badge-yes">Evet</span></td>
+          </tr>
+          <tr>
+            <td>Abonelik durumu</td>
+            <td><span class="badge badge-yes">Evet</span></td>
+            <td><span class="badge badge-yes">Evet (TLS)</span></td>
+            <td><span class="badge badge-cond">Kısmen*</span></td>
+          </tr>
+          <tr>
+            <td>Kart / Ödeme bilgisi</td>
+            <td><span class="badge badge-no">Hayır</span></td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Push bildirim tokeni</td>
+            <td><span class="badge badge-yes">Evet</span></td>
+            <td><span class="badge badge-yes">Evet (TLS)</span></td>
+            <td><span class="badge badge-yes">Evet</span></td>
+          </tr>
+          <tr>
+            <td>Platform (Android/iOS)</td>
+            <td><span class="badge badge-yes">Evet</span></td>
+            <td><span class="badge badge-yes">Evet (TLS)</span></td>
+            <td><span class="badge badge-yes">Evet</span></td>
+          </tr>
+          <tr>
+            <td>Konum verisi</td>
+            <td><span class="badge badge-no">Hayır</span></td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Mikrofon / Kamera</td>
+            <td><span class="badge badge-no">Hayır</span></td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:.8rem; font-size:.82rem">* Abonelik ve ödeme kayıtları Vergi Usul Kanunu gereği 10 yıl saklanmaktadır.</p>
+    </div>
+
+    <!-- DS2 -->
+    <div class="legal-section-block" id="ds2">
+      <div class="section-number">Bölüm 02</div>
+      <h2>Veri Paylaşımı</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Üçüncü Taraf</th>
+            <th>Amaç</th>
+            <th>Reklam amaçlı?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Supabase</td>
+            <td>Veritabanı & kimlik doğrulama</td>
+            <td><span class="badge badge-no">Hayır</span></td>
+          </tr>
+          <tr>
+            <td>RevenueCat</td>
+            <td>Abonelik yönetimi</td>
+            <td><span class="badge badge-no">Hayır</span></td>
+          </tr>
+          <tr>
+            <td>Google Play</td>
+            <td>Ödeme işleme</td>
+            <td><span class="badge badge-no">Hayır</span></td>
+          </tr>
+          <tr>
+            <td>Resend</td>
+            <td>İşlemsel e-posta</td>
+            <td><span class="badge badge-no">Hayır</span></td>
+          </tr>
+          <tr>
+            <td>Expo</td>
+            <td>Push bildirim</td>
+            <td><span class="badge badge-no">Hayır</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-box" style="margin-top:1rem">
+        <strong>Önemli:</strong> Verileriniz hiçbir reklam ağıyla, veri komisyoncusuyla veya pazarlama şirketiyle paylaşılmaz. Üçüncü taraf paylaşımları yalnızca hizmetin çalışması için zorunlu olan altyapı sağlayıcılarıyla sınırlıdır.
+      </div>
+    </div>
+
+    <!-- DS3 -->
+    <div class="legal-section-block" id="ds3">
+      <div class="section-number">Bölüm 03</div>
+      <h2>Güvenlik Uygulamaları</h2>
+      <div class="safety-grid">
+        <div class="safety-card">
+          <div class="s-icon">🔐</div>
+          <h4>Şifreli İletim</h4>
+          <p>Tüm veriler TLS 1.2+ şifreli bağlantılar üzerinden iletilir. Açık metin iletişim yoktur.</p>
+        </div>
+        <div class="safety-card">
+          <div class="s-icon">🔑</div>
+          <h4>Şifre Güvenliği</h4>
+          <p>Kullanıcı şifreleri bcrypt algoritmasıyla hash'lenir. Şifreler hiçbir zaman düz metin olarak saklanmaz.</p>
+        </div>
+        <div class="safety-card">
+          <div class="s-icon">🏰</div>
+          <h4>Row Level Security</h4>
+          <p>Her kullanıcı yalnızca kendi verilerine erişebilir. Veritabanı seviyesinde zorunlu kılınır.</p>
+        </div>
+        <div class="safety-card">
+          <div class="s-icon">💳</div>
+          <h4>Ödeme Güvenliği</h4>
+          <p>Kart bilgileri uygulamada işlenmez veya saklanmaz. Tüm ödeme işlemleri Google Play altyapısı tarafından yönetilir.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DS4 -->
+    <div class="legal-section-block" id="ds4">
+      <div class="section-number">Bölüm 04</div>
+      <h2>Hesap Silme</h2>
+      <p>Google Play politikası gereği, uygulama içi hesap oluşturma olanağı sunan uygulamalar, kullanıcılara <strong>uygulama içinden hesap ve veri silme</strong> imkânı tanımak zorundadır. Fonolog bu gereksinimi karşılamaktadır.</p>
+
+      <p style="margin-top:1rem; margin-bottom:.8rem"><strong>Uygulama içinden hesap silme adımları:</strong></p>
+      <div class="delete-steps">
+        <div class="step"><p>Uygulamayı açın ve hesabınıza giriş yapın.</p></div>
+        <div class="step"><p><strong>Profil</strong> sekmesine gidin.</p></div>
+        <div class="step"><p><strong>Ayarlar</strong> veya <strong>Hesap</strong> menüsünü açın.</p></div>
+        <div class="step"><p><strong>"Hesabı Sil"</strong> seçeneğine dokunun.</p></div>
+        <div class="step"><p>Onay adımını tamamlayın. Hesabınız ve verileriniz silinme sürecine alınır.</p></div>
+      </div>
+
+      <div class="info-box" style="margin-top:1rem">
+        <strong>Not:</strong> Hesap kapatma ile hesap silme farklı işlemlerdir. Kapatma işleminde verileriniz korunur ve aynı e-posta ile geri dönebilirsiniz. Silme işleminde tüm kişisel verileriniz aşağıdaki saklama süreleri dahilinde tamamen silinir.
+      </div>
+    </div>
+
+    <!-- DS5 -->
+    <div class="legal-section-block" id="ds5">
+      <div class="section-number">Bölüm 05</div>
+      <h2>Veri Silme Talebi</h2>
+      <p>Uygulamaya erişiminiz olmasa dahi verilerinizin silinmesini e-posta yoluyla talep edebilirsiniz.</p>
+
+      <p style="margin-top:1rem; margin-bottom:.8rem"><strong>E-posta ile veri silme talebi adımları:</strong></p>
+      <div class="delete-steps">
+        <div class="step"><p><a href="mailto:fonologpro@gmail.com" style="color:var(--amber)">fonologpro@gmail.com</a> adresine e-posta gönderin.</p></div>
+        <div class="step"><p>Konu satırına <strong>"Veri Silme Talebi"</strong> yazın.</p></div>
+        <div class="step"><p>E-posta içeriğine kayıtlı <strong>e-posta adresinizi</strong> ve silme talebinizi belirtin.</p></div>
+        <div class="step"><p>Talebiniz <strong>30 gün içinde</strong> işleme alınır ve size onay e-postası gönderilir.</p></div>
+      </div>
+
+      <table class="data-table" style="margin-top:1.5rem">
+        <thead>
+          <tr>
+            <th>Veri Türü</th>
+            <th>Silme Sonrası Durum</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hesap bilgileri (ad, e-posta, şifre)</td>
+            <td>Kalıcı olarak silinir</td>
+          </tr>
+          <tr>
+            <td>Öğrenme ve ilerleme verileri</td>
+            <td>Kalıcı olarak silinir</td>
+          </tr>
+          <tr>
+            <td>Push bildirim tokeni</td>
+            <td>Kalıcı olarak silinir</td>
+          </tr>
+          <tr>
+            <td>Abonelik kayıtları</td>
+            <td>Vergi Usul Kanunu gereği 10 yıl saklanır, ardından silinir</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DS6 -->
+    <div class="legal-section-block" id="ds6">
+      <div class="section-number">Bölüm 06</div>
+      <h2>Çocuk Güvenliği</h2>
+      <p>Fonolog, 6 yaş ve üzeri çocuklar için tasarlanmış bir eğitim uygulamasıdır. Çocuklara ilişkin özel korumalarımız:</p>
+      <ul style="margin-top:.8rem">
+        <li>13 yaş altı çocuklar uygulamayı yalnızca <strong>ebeveyn veya yasal temsilci gözetiminde</strong> kullanabilir</li>
+        <li>Çocuk profillerine ait veriler yalnızca eğitim amacıyla işlenir; <strong>reklam, profil oluşturma veya üçüncü taraflarla paylaşım yapılmaz</strong></li>
+        <li>Ebeveynler, çocuklarına ait tüm verilerin silinmesini her zaman talep edebilir</li>
+        <li>Çocuk verilerinin rıza olmaksızın sisteme girdiğini fark ederseniz lütfen <a href="mailto:fonologpro@gmail.com" style="color:var(--amber)">fonologpro@gmail.com</a> adresine bildirin</li>
+      </ul>
+    </div>
+
+    <div class="contact-box">
+      <div class="contact-icon">🛡️</div>
+      <div>
+        <h4>Veri silme veya güvenlik soruları için</h4>
+        <p>E-posta: <a href="mailto:fonologpro@gmail.com">fonologpro@gmail.com</a> — Konu: "Veri Silme Talebi"</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="app-logo.png" alt="Fonolog logo" class="logo-mark" />
+        <span>Fonolog</span>
+      </a>
+      <div class="footer-links">
+        <a href="privacy.html">Gizlilik Politikası</a>
+        <a href="terms.html">Kullanım Koşulları</a>
+        <a href="data-safety.html">Veri Güvenliği</a>
+        <a href="mailto:fonologpro@gmail.com">fonologpro@gmail.com</a>
+      </div>
+      <p class="footer-copy">© 2026 Fonolog. Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+</body>
+</html>

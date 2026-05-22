@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fonolog — Türkçe Okuma Uygulaması</title>
+  <meta name="description" content="Fonolog, çocukların Türkçe okuma becerilerini oyun tabanlı yöntemlerle geliştiren eğitici bir mobil uygulamadır." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    /* ── HERO ── */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem var(--px) 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 0%, rgba(255,183,77,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(108,180,255,.13) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: rgba(255,183,77,.15);
+      border: 1px solid rgba(255,183,77,.35);
+      border-radius: 100px;
+      padding: .35rem .9rem;
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp .6s .1s forwards;
+    }
+    .hero-badge span { font-size: .9em; }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      color: var(--text);
+      max-width: 800px;
+      margin: 0 auto 1.4rem;
+      opacity: 0;
+      animation: fadeUp .7s .2s forwards;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--amber);
+    }
+    .hero p {
+      font-family: var(--sans);
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 2.8rem;
+      line-height: 1.7;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp .7s .35s forwards;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp .7s .5s forwards;
+    }
+    .btn-primary {
+      background: var(--amber);
+      color: #1a1206;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: .95rem;
+      padding: .85rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 24px rgba(255,183,77,.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,183,77,.4); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: .95rem;
+      padding: .85rem 2rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 5rem var(--px);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .features-label {
+      font-family: var(--sans);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .features h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3rem;
+      max-width: 500px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: rgba(255,183,77,.35); transform: translateY(-3px); }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card h3 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+    .card p {
+      font-family: var(--sans);
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ── LEGAL LINKS ── */
+    .legal-section {
+      background: rgba(255,255,255,.03);
+      border-top: 1px solid var(--border);
+      padding: 4rem var(--px);
+      text-align: center;
+    }
+    .legal-section h2 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .6rem;
+    }
+    .legal-section p {
+      font-family: var(--sans);
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .legal-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .legal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .9rem 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: .9rem;
+      font-weight: 400;
+      transition: border-color .2s, background .2s;
+    }
+    .legal-link:hover { border-color: var(--amber); background: rgba(255,183,77,.07); }
+    .legal-link-icon { font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="app-logo.png" alt="Fonolog logo" class="logo-mark" />
+      <span>Fonolog</span>
+    </a>
+    <div class="nav-links">
+      <a href="privacy.html">Gizlilik</a>
+      <a href="terms.html">Koşullar</a>
+      <a href="data-safety.html">Veri Güvenliği</a>
+      <a href="mailto:fonologpro@gmail.com" class="nav-cta">İletişim</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-badge"><span></span> Türkçe Okuma Uygulaması</div>
+      <h1>Okumayı <em>sevdiren</em> uygulama</h1>
+      <p>Fonolog, ilkokul çağındaki çocukların Türkçe okuma becerilerini oyun tabanlı yöntemler ve kişisel öğrenme yollarıyla geliştiren eğitici bir mobil uygulamadır.</p>
+      <div class="hero-cta">
+        <a href="privacy.html" class="btn-primary">Gizlilik Politikası</a>
+        <a href="data-safety.html" class="btn-ghost">Veri Güvenliği</a>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="features-label">Özellikler</div>
+      <h2>Çocuklar için tasarlandı</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🎮</div>
+          <h3>Oyun Tabanlı Öğrenme</h3>
+          <p>Kelime oyunları, XP puanları ve seviye sistemiyle öğrenme eğlenceli hâle gelir.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📈</div>
+          <h3>İlerleme Takibi</h3>
+          <p>Öğrenci gelişimi detaylı raporlarla takip edilir; öğretmenler anlık olarak izleyebilir.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👩‍🏫</div>
+          <h3>Öğretmen Paneli</h3>
+          <p>Ödev verme, not ekleme ve sınıf yönetimi tek ekrandan kolayca yapılır.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔒</div>
+          <h3>Güvenli & Özel</h3>
+          <p>KVKK ve GDPR uyumlu altyapı. Çocuk verileri en yüksek güvenlik standartlarıyla korunur.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="legal-section">
+      <h2>Yasal Belgeler</h2>
+      <p>Google Play ve mağaza gereksinimleri için tüm politikalarımıza buradan ulaşabilirsiniz.</p>
+      <div class="legal-links">
+        <a href="privacy.html" class="legal-link">
+          <span class="legal-link-icon">🔐</span>
+          Gizlilik Politikası & KVKK
+        </a>
+        <a href="terms.html" class="legal-link">
+          <span class="legal-link-icon">📄</span>
+          Kullanım Koşulları
+        </a>
+        <a href="data-safety.html" class="legal-link">
+          <span class="legal-link-icon">🛡️</span>
+          Veri Güvenliği & Silme
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="app-logo.png" alt="Fonolog logo" class="logo-mark" />
+        <span>Fonolog</span>
+      </a>
+      <div class="footer-links">
+        <a href="privacy.html">Gizlilik Politikası</a>
+        <a href="terms.html">Kullanım Koşulları</a>
+        <a href="data-safety.html">Veri Güvenliği</a>
+        <a href="mailto:fonologpro@gmail.com">fonologpro@gmail.com</a>
+      </div>
+      <p class="footer-copy">© 2026 Fonolog. Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+</body>
+</html>
