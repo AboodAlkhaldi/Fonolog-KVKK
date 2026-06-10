@@ -7,6 +7,7 @@ Static HTML site for Google Play compliance.
 - `/privacy` — Gizlilik Politikası & KVKK
 - `/terms` — Kullanım Koşulları
 - `/data-safety` — Veri Güvenliği & Hesap Silme
+- `/account-deletion` — Hesap Silme Talep Formu
 
 ## Deploy to Vercel (5 minutes)
 
@@ -32,11 +33,12 @@ Choose your preferred project name (e.g. `fonolog`) → site goes live at `fonol
 ## Files
 ```
 fonolog-site/
-├── index.html        ← landing page
-├── privacy.html      ← privacy policy + KVKK
-├── terms.html        ← terms of service
-├── data-safety.html  ← data safety + account deletion
-├── shared.css        ← shared styles
-├── vercel.json       ← Vercel config (clean URLs)
+├── index.html             ← landing page
+├── privacy.html           ← privacy policy + KVKK
+├── terms.html             ← terms of service
+├── data-safety.html       ← data safety + account deletion
+├── account-deletion.html  ← account deletion request form
+├── shared.css             ← shared styles
+├── vercel.json            ← Vercel config (clean URLs)
 └── README.md
 ```
