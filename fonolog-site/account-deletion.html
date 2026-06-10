@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hesap Silme Talebi — Fonolog</title>
+  <meta name="description" content="Fonolog hesabınızı ve kişisel verilerinizi silmek için talep formu. Talebiniz ekibimiz tarafından incelenir ve KVKK kapsamında işleme alınır." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .delete-steps {
+      counter-reset: step;
+      margin: 1.2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+    .step {
+      counter-increment: step;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+    }
+    .step::before {
+      content: counter(step);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      background: var(--amber);
+      color: #1a1206;
+      font-family: var(--serif);
+      font-weight: 800;
+      font-size: .85rem;
+      border-radius: 50%;
+    }
+    .step p { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+    .step strong { color: var(--text); }
+
+    /* ── FORM ── */
+    .deletion-form {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-top: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: .5rem; }
+    .form-group label {
+      font-size: .85rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .8rem 1rem;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: .9rem;
+      font-weight: 300;
+      resize: vertical;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--amber);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); }
+
+    .form-error {
+      color: #ff8a8a;
+      font-size: .85rem;
+      min-height: 1.2rem;
+    }
+
+    .send-btn {
+      align-self: flex-start;
+      background: var(--amber);
+      color: #1a1206;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: .95rem;
+      padding: .85rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 24px rgba(255,183,77,.3);
+    }
+    .send-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,183,77,.4); }
+
+    .form-fallback {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .form-fallback a { color: var(--amber); text-decoration: none; }
+    .form-fallback a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="app-logo.png" alt="Fonolog logo" class="logo-mark" />
+      <span>Fonolog</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="privacy.html">Gizlilik</a>
+      <a href="data-safety.html">Veri Güvenliği</a>
+      <a href="mailto:fonologpro@gmail.com" class="nav-cta">İletişim</a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-tag">Hesap Yönetimi</div>
+    <h1>Hesap Silme<br>Talebi</h1>
+    <p class="subtitle">Hesabınızın ve hesabınızla ilişkili tüm kişisel verilerin kalıcı olarak silinmesini talep edin. Talebiniz ekibimiz tarafından incelenecektir.</p>
+    <div class="update-badge">⏱️ Talepler en geç 30 gün içinde işleme alınır</div>
+  </div>
+
+  <div class="legal-content">
+
+    <div class="legal-toc">
+      <h4>İçindekiler</h4>
+      <ol>
+        <li><a href="#ad1">Süreç Nasıl İşler</a></li>
+        <li><a href="#ad2">Silinecek Veriler</a></li>
+        <li><a href="#ad3">Talep Formu</a></li>
+      </ol>
+    </div>
+
+    <!-- AD1 -->
+    <div class="legal-section-block" id="ad1">
+      <div class="section-number">Bölüm 01</div>
+      <h2>Süreç Nasıl İşler</h2>
+      <p>Hesap silme talebinizi göndermeden önce aşağıdaki süreci inceleyin:</p>
+      <div class="delete-steps">
+        <div class="step"><p>Aşağıdaki formu doldurun: <strong>kayıtlı e-posta adresinizi</strong> ve <strong>silme nedeninizi</strong> girin.</p></div>
+        <div class="step"><p><strong>"Talebi Gönder"</strong> butonuna tıklayın. Bilgileriniz önceden doldurulmuş şekilde Gmail'de yeni bir e-posta penceresi açılacaktır.</p></div>
+        <div class="step"><p>Açılan e-postayı kontrol edin ve Gmail'deki <strong>"Gönder"</strong> butonuna basarak talebinizi ekibimize iletin.</p></div>
+        <div class="step"><p>Ekibimiz talebinizi inceler ve hesabınızla ilişkili tüm kişisel verileri <strong>en geç 30 gün içinde</strong> kalıcı olarak siler.</p></div>
+        <div class="step"><p>İşlem tamamlandığında, talepte belirttiğiniz e-posta adresine bir <strong>onay bildirimi</strong> gönderilir.</p></div>
+      </div>
+      <div class="info-box" style="margin-top:1rem">
+        <strong>Önemli:</strong> Hesap silme işlemi geri alınamaz. Silme işlemi tamamlandıktan sonra hesabınıza, öğrenme geçmişinize ve ilerleme verilerinize erişim mümkün olmayacaktır.
+      </div>
+    </div>
+
+    <!-- AD2 -->
+    <div class="legal-section-block" id="ad2">
+      <div class="section-number">Bölüm 02</div>
+      <h2>Silinecek Veriler</h2>
+      <p>Talebiniz onaylandığında aşağıdaki veriler için belirtilen işlemler uygulanır:</p>
+      <table class="data-table" style="margin-top:1rem">
+        <thead>
+          <tr>
+            <th>Veri Türü</th>
+            <th>Silme Sonrası Durum</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hesap bilgileri (ad, e-posta, şifre)</td>
+            <td>Kalıcı olarak silinir</td>
+          </tr>
+          <tr>
+            <td>Öğrenme ve ilerleme verileri</td>
+            <td>Kalıcı olarak silinir</td>
+          </tr>
+          <tr>
+            <td>Push bildirim tokeni</td>
+            <td>Kalıcı olarak silinir</td>
+          </tr>
+          <tr>
+            <td>Abonelik kayıtları</td>
+            <td>Vergi Usul Kanunu gereği 10 yıl saklanır, ardından silinir</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AD3 -->
+    <div class="legal-section-block" id="ad3">
+      <div class="section-number">Bölüm 03</div>
+      <h2>Talep Formu</h2>
+      <p>Aşağıdaki bilgileri doldurun. "Talebi Gönder" butonuna bastığınızda, bilgileriniz önceden doldurulmuş şekilde Gmail üzerinden ekibimize gönderilmek üzere hazırlanır.</p>
+
+      <form class="deletion-form" onsubmit="return false;">
+        <div class="form-group">
+          <label for="user-email">Kayıtlı E-posta Adresiniz</label>
+          <input type="email" id="user-email" placeholder="ornek@eposta.com" required />
+        </div>
+        <div class="form-group">
+          <label for="reason">Hesap Silme Nedeni</label>
+          <textarea id="reason" rows="5" placeholder="Hesabınızı silmek istemenizin nedenini kısaca açıklayın..." required></textarea>
+        </div>
+        <div class="form-error" id="form-error"></div>
+        <button type="button" class="send-btn" id="send-btn">Talebi Gönder</button>
+        <p class="form-fallback">Gmail kullanmıyor musunuz? <a href="#" id="mailto-fallback">Varsayılan e-posta uygulamanızla gönderin</a></p>
+      </form>
+    </div>
+
+    <div class="contact-box">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <h4>Sorularınız mı var?</h4>
+        <p>E-posta: <a href="mailto:fonologpro@gmail.com">fonologpro@gmail.com</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="app-logo.png" alt="Fonolog logo" class="logo-mark" />
+        <span>Fonolog</span>
+      </a>
+      <div class="footer-links">
+        <a href="privacy.html">Gizlilik Politikası</a>
+        <a href="terms.html">Kullanım Koşulları</a>
+        <a href="data-safety.html">Veri Güvenliği</a>
+        <a href="account-deletion.html">Hesap Silme Talebi</a>
+        <a href="mailto:fonologpro@gmail.com">fonologpro@gmail.com</a>
+      </div>
+      <p class="footer-copy">© 2026 Fonolog. Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+
+  <script>
+    function buildRequestContent() {
+      var email = document.getElementById('user-email').value.trim();
+      var reason = document.getElementById('reason').value.trim();
+      var errorEl = document.getElementById('form-error');
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email || !reason) {
+        errorEl.textContent = 'Lütfen tüm alanları doldurun.';
+        return null;
+      }
+      if (!emailRegex.test(email)) {
+        errorEl.textContent = 'Lütfen geçerli bir e-posta adresi girin.';
+        return null;
+      }
+      errorEl.textContent = '';
+
+      var subject = 'Hesap Silme Talebi';
+      var body = 'Merhaba Fonolog Ekibi,\n\n'
+        + 'Aşağıdaki hesabımın ve ilişkili tüm kişisel verilerimin KVKK kapsamında silinmesini talep ediyorum.\n\n'
+        + 'Kayıtlı E-posta: ' + email + '\n\n'
+        + 'Silme Nedeni:\n' + reason + '\n\n'
+        + 'Teşekkürler.';
+
+      return { subject: subject, body: body };
+    }
+
+    document.getElementById('send-btn').addEventListener('click', function () {
+      var data = buildRequestContent();
+      if (!data) return;
+      var url = 'https://mail.google.com/mail/?view=cm&fs=1&to=fonologpro@gmail.com'
+        + '&su=' + encodeURIComponent(data.subject)
+        + '&body=' + encodeURIComponent(data.body);
+      window.open(url, '_blank');
+    });
+
+    document.getElementById('mailto-fallback').addEventListener('click', function (e) {
+      e.preventDefault();
+      var data = buildRequestContent();
+      if (!data) return;
+      window.location.href = 'mailto:fonologpro@gmail.com'
+        + '?subject=' + encodeURIComponent(data.subject)
+        + '&body=' + encodeURIComponent(data.body);
+    });
+  </script>
+</body>
+</html>
